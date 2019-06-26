@@ -14,11 +14,11 @@ class CreateExpensesTable extends Migration
     public function up()
     {
         Schema::create('expenses', function (Blueprint $table) {
-            $table->Increments('id');
+            $table->Increments('e_id');
             $table->integer('user_id');
-            $table->string('judul');
-            $table->text('description')->nullable(true);
-            $table->integer('jumlah');
+            $table->string('e_judul');
+            $table->text('e_description')->nullable(true);
+            $table->integer('e_jumlah');
             $table->timestamps();
         });
     }
