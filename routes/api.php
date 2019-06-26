@@ -19,8 +19,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/auth/register','AuthController@register');
 Route::post('/auth/login','AuthController@login');
-Route::post('/income/add','IncomeController@add')->middleware('auth:api');
-Route::get('/income/show','IncomeController@show')->middleware('auth:api');
-Route::put('/income/{income}','IncomeController@update')->middleware('auth:api');
-Route::delete('/income/{income}', 'IncomeController@delete')->middleware('auth:api');
-Route::get('/profile','UserController@profile')->middleware('auth:api');
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('/income/add','IncomeController@add');
+    Route::get('/income/show','IncomeController@show');
+    Route::put('/income/{income}','IncomeController@update');
+    Route::delete('/income/{income}', 'IncomeController@delete');
+    Route::get('/profile','UserController@profile');
+});
+
+
+// Route::post('/income/add','IncomeController@add')->middleware('auth:api');
+// Route::get('/income/show','IncomeController@show')->middleware('auth:api');
+// Route::put('/income/{income}','IncomeController@update')->middleware('auth:api');
+// Route::delete('/income/{income}', 'IncomeController@delete')->middleware('auth:api');
+// Route::get('/profile','UserController@profile')->middleware('auth:api');
+
