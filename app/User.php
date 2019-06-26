@@ -39,12 +39,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function icncomes(){
+    public function incomes(){
         return $this->hasMany(Income::class);
+    }
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
     }
 
     public function ownsIncome(Income $income){
         return auth()->id() == $income->user_id;
+    }
+
+    public function ownsExpense(Expense $expense)
+    {
+        return auth()->id() == $expense->user_id;
     }
 
 }
