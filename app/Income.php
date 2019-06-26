@@ -10,7 +10,8 @@ class Income extends Model
     //
     protected $fillable=['user_id','i_judul','i_description','i_jumlah'];
 
-    public function users(){
+    public function users()
+    {
         return $this->belongsTo(User::class);
     }
 }

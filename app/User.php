@@ -43,6 +43,11 @@ class User extends Authenticatable
         return $this->hasMany(Income::class);
     }
 
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
+
     public function ownsIncome(Income $income){
         return auth()->id() == $income->user_id;
     }

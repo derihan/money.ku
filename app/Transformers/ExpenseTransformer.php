@@ -14,11 +14,13 @@ class ExpenseTransformer extends TransformerAbstract
      */
     public function transform(Expense $expense)
     {
+        
         return [
             //
-            'e_id' => $expense->e_id,
+            'e_id' => $expense->id,
             'e_judul' => $expense->e_judul,
-            'e_description' => $expense->e_jumlah,
+            'e_description' => $expense->e_description,
+            'e_jumlah' => $expense->e_jumlah,
             'date_out' => $expense->created_at->diffForHumans()
         ];
     }
