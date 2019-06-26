@@ -27,8 +27,8 @@ class AuthController extends Controller
         $users = $user->create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'api_token' => bcrypt($request->email)
+            'api_token' => bcrypt($request->email),
+            'password' => bcrypt($request->password)
         ]);
 
         $res = fractal()
