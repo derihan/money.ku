@@ -39,7 +39,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function icncomes(){
+    public function incomes(){
         return $this->hasMany(Income::class);
     }
 

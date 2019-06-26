@@ -3,6 +3,7 @@
 namespace App\Transformers;
 
 use App\User;
+use App\Transformers\IncomeTransformer;
 use League\Fractal\TransformerAbstract;
 
 class UserTransformer extends TransformerAbstract
@@ -12,6 +13,10 @@ class UserTransformer extends TransformerAbstract
      *
      * @return array
      */
+    protected $availableIncludes = [
+        'incomes'
+    ];
+    
     public function transform(User $user)
     {
         return [
@@ -22,4 +27,15 @@ class UserTransformer extends TransformerAbstract
             'registered_at' => $user->created_at->diffForHumans()
         ];
     }
+
+    public function includeIncomes(User $user)
+    {
+        # code...
+        $income = $user->incomes(); 
+        return $this->collection($income, new IncomeTransformer);
+    }
+    
+    
+    
+
 }
