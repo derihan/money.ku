@@ -11,6 +11,18 @@ class IncomeController extends Controller
 {
     //
 
+    
+    public function show(){
+        $id = Auth::user()->id;
+        $data = Income::where('user_id','=',$id)->get();
+
+        $response = fractal()
+            ->collection($data)
+            ->transformWith(new IncomeTransformer)
+            ->toArray();
+
+        return response()->json($response, 200);
+    }
 
     public function add(Request $request, Income $income){
         $this->validate($request,[
