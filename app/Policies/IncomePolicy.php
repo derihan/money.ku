@@ -6,7 +6,7 @@ use App\User;
 use App\Income;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class AppPolicy
+class IncomePolicy
 {
     use HandlesAuthorization;
 

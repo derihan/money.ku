@@ -42,12 +42,7 @@ class IncomeController extends Controller
         $id = Auth::user()->id;
         $data = Income::where('user_id','=',$id)->get();
 
-        $response = fractal()
-            ->collection($data)
-            ->transformWith(new IncomeTransformer)
-            ->toArray();
-
-        return response()->json($response, 200);
+        return response()->json(['title' => 'Data Income','method' => 'GET','count'=>$data->count(),'data' => $data], 200);
     }
 
     public function add(Request $request, Income $income){
@@ -67,7 +62,6 @@ class IncomeController extends Controller
             ->item($incomes)
             ->transformWith(new IncomeTransformer)
             ->toArray();
-        
         // return $request->all();
         return response()->json($response, 201);
     }
