@@ -19,4 +19,10 @@ class ExpensePolicy
     {
         return $user->ownsExpense($expense);
     }
+
+    public function delete(User $user,Expense $expense)
+    {
+        return $user->ownsExpense($expense);
+    }
+
 }

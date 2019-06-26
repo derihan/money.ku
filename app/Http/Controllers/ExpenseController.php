@@ -61,6 +61,15 @@ class ExpenseController extends Controller
         return response()->json($response, 200);
     }
 
-    
+    public function delete(Expense $expense)
+    {
+        $this->authorize('delete',$expense);
+
+        $id_data = $expense->id;
+
+        $expense->delete();
+
+        return response()->json(['message' => 'data id '.$id_data.' has been deleted '], 200);
+    }
 
 }
