@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Income;
+use App\Expense;
 use App\User;
 use App\Transformers\UserTransformer;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class UserController extends Controller
             ->item($user)
             ->transformWith(new UserTransformer)
             ->includeIncomes()
+            ->includeExpenses()
             ->toArray();
         return response()->json($response, 200);
     }
