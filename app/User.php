@@ -52,4 +52,9 @@ class User extends Authenticatable
         return auth()->id() == $income->user_id;
     }
 
+    public function ownsExpense(Expense $expense)
+    {
+        return auth()->id() == $expense->user_id;
+    }
+
 }

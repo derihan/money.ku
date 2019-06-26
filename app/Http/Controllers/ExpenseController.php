@@ -10,7 +10,7 @@ use App\Transformers\ExpenseTransformer;
 class ExpenseController extends Controller
 {
     //
-    public function add(Request $request, Expense $expense){
+    public function add(Request $request,Expense $expense){
         $this->validate($request,[
             'judul' => 'required|min:3',
             'jumlah' => 'required|min:4|numeric'
@@ -43,5 +43,24 @@ class ExpenseController extends Controller
             'count'=>$data->count(),
             'data' => $data], 200);
     }
+
+    public function update(Request $request,Expense $expense)
+    {
+        $this->authorize('update',$expense);
+
+        $expense->e_judul = $request->get('judul', $expense->e_judul);
+        $expense->e_description = $request->get('description', $expense->e_description);
+        $expense->e_jumlah = $request->get('jumlah', $expense->e_jumlah);
+        $expense->save();
+        
+        $response = fractal()
+            ->item($expense)
+            ->transformWith(new ExpenseTransformer)
+            ->toArray();
+        
+        return response()->json($response, 200);
+    }
+
+    
 
 }

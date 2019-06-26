@@ -16,7 +16,7 @@ class ExpenseTransformer extends TransformerAbstract
     {
         return [
             //
-            'e_id' => $expense->id,
+            'id' => $expense->id,
             'e_judul' => $expense->e_judul,
             'e_description' => $expense->e_description,
             'e_jumlah' => $expense->e_jumlah,

@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/profile','UserController@profile');
     Route::post('/expense/add','ExpenseController@add');
     Route::get('/expense/show','ExpenseController@show');
+    Route::put('/expense/{expense}','ExpenseController@update');
 });
 
 
