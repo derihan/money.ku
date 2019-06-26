@@ -22,3 +22,4 @@ Route::post('/auth/login','AuthController@login');
 Route::post('/income/add','IncomeController@add')->middleware('auth:api');
 Route::get('/income/show','IncomeController@show')->middleware('auth:api');
 Route::put('/income/{income}','IncomeController@update')->middleware('auth:api');
+Route::delete('/income/{income}', 'IncomeController@delete')->middleware('auth:api');

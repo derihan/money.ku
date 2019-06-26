@@ -28,6 +28,16 @@ class IncomeController extends Controller
         return response()->json($response, 200);
     }
 
+    public function delete(Income $income){
+        $this->authorize('delete', $income);
+
+        $id_data = $income->id;
+        $income->delete();
+
+        return response()->json(['message' => 'data id '.$id_data.' has been deleted '], 200);
+
+    }
+
     public function show(){
         $id = Auth::user()->id;
         $data = Income::where('user_id','=',$id)->get();

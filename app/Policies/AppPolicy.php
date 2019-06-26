@@ -20,4 +20,9 @@ class AppPolicy
         # code...
         return $user->ownsIncome($income);
     }
+
+    public function delete(User $user, Income $income){
+        return $user->ownsIncome($income);
+    }
+
 }
