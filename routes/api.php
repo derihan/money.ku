@@ -16,3 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/auth/register','AuthController@register');
+Route::post('/auth/login','AuthController@login');
+Route::post('/income/add','IncomeController@add')->middleware('auth:api');
+Route::get('/income/show','IncomeController@show')->middleware('auth:api');
+Route::put('/income/{income}','IncomeController@update')->middleware('auth:api');
+Route::delete('/income/{income}', 'IncomeController@delete')->middleware('auth:api');

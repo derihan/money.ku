@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Expense;
+use App\Income;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','api_token'
     ];
 
     /**
@@ -36,4 +38,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function icncomes(){
+        return $this->hasMany(Income::class);
+    }
+
+    public function ownsIncome(Income $income){
+        return auth()->id() == $income->user_id;
+    }
+
 }
