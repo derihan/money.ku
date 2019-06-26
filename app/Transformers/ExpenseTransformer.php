@@ -16,9 +16,10 @@ class ExpenseTransformer extends TransformerAbstract
     {
         return [
             //
-            'e_id' => $expense->e_id,
+            'id' => $expense->id,
             'e_judul' => $expense->e_judul,
-            'e_description' => $expense->e_jumlah,
+            'e_description' => $expense->e_description,
+            'e_jumlah' => $expense->e_jumlah,
             'date_out' => $expense->created_at->diffForHumans()
         ];
     }
