@@ -42,7 +42,13 @@ class IncomeController extends Controller
         $id = Auth::user()->id;
         $data = Income::where('user_id','=',$id)->get();
 
-        return response()->json(['title' => 'Data Income','method' => 'GET','count'=>$data->count(),'data' => $data], 200);
+        return response()->json([
+            'title' => 'Data Income',
+            'method' => 'GET',
+            'author'=>Auth::user()->email,
+            'id author'=>$id,
+            'count'=>$data->count(),
+            'data' => $data], 200);
     }
 
     public function add(Request $request, Income $income){

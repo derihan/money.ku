@@ -14,7 +14,6 @@ class ExpenseTransformer extends TransformerAbstract
      */
     public function transform(Expense $expense)
     {
-        
         return [
             //
             'e_id' => $expense->id,

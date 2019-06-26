@@ -31,4 +31,17 @@ class ExpenseController extends Controller
         return response()->json($response, 201);
     }    
 
+    public function show(){
+        $id = Auth::user()->id;
+        $data = Expense::where('user_id','=',$id)->get();
+
+        return response()->json([
+            'title' => 'Data Expense',
+            'method' => 'GET',
+            'author'=>Auth::user()->email,
+            'id author'=>$id,
+            'count'=>$data->count(),
+            'data' => $data], 200);
+    }
+
 }

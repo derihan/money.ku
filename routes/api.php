@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::delete('/income/{income}', 'IncomeController@delete');
     Route::get('/profile','UserController@profile');
     Route::post('/expense/add','ExpenseController@add');
+    Route::get('/expense/show','ExpenseController@show');
 });
 
 
