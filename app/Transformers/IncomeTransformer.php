@@ -16,9 +16,10 @@ class IncomeTransformer extends TransformerAbstract
     {
         return [
             //
-            'i_id' => $income->e_id,
-            'i_judul' => $income->e_judul,
-            'i_description' => $income->e_jumlah,
+            'i_id' => $income->i_id,
+            'i_judul' => $income->i_judul,
+            'i_description' => $income->i_description,
+            'i_jumlah' => $income->i_jumlah,
             'date_in' => $income->created_at->diffForHumans()
         ];
     }
