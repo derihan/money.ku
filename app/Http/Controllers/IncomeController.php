@@ -20,11 +20,9 @@ class IncomeController extends Controller
         $income->i_jumlah = $request->get('jumlah',$income->i_jumlah);
         $income->save();
 
-        $response = fractal()
-                ->item($income)
-                ->transformWith(new IncomeTransformer)
-                ->toArray();
-        
+        $response = array(
+            'status' => 'edit data sukses'
+        );
         // return $income->user_id;
 
         return response()->json($response, 200);

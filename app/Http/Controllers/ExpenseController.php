@@ -61,10 +61,9 @@ class ExpenseController extends Controller
         $expense->e_jumlah = $request->get('jumlah', $expense->e_jumlah);
         $expense->save();
         
-        $response = fractal()
-            ->item($expense)
-            ->transformWith(new ExpenseTransformer)
-            ->toArray();
+        $response = array(
+            'status' => 'edit data sukses'
+        );
         
         return response()->json($response, 200);
     }
