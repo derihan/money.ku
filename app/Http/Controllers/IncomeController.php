@@ -10,6 +10,8 @@ use App\Transformers\IncomeTransformer;
 class IncomeController extends Controller
 {
     //
+ 
+
     public function update(Request $request,Income $income){
         $this->authorize('update', $income);
 
@@ -48,8 +50,17 @@ class IncomeController extends Controller
             'author'=>Auth::user()->email,
             'id author'=>$id,
             'count'=>$data->count(),
-            'data' => $data], 200);
+            'inc' => $data], 200);
     }
+
+    public function showByid($income){
+
+        $data = Income::where([['user_id','=',Auth::user()->id],['id','=',$income]])->first();
+
+        return response()->json($data, 200);
+
+    }
+
 
     public function add(Request $request, Income $income){
         $this->validate($request,[
