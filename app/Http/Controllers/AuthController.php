@@ -14,17 +14,15 @@ class AuthController extends Controller
     public function login(Request $request, User $user){
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             # code...
-            $users= $user->find(Auth::user()->id);
+            $users = $user->find(Auth::user()->id);
 
-            $response =  fractal()
-                ->item($users)
-                ->transformWith(new UserTransformer)
-                ->addMeta(['token' => $users->api_token])
-                ->toArray();
+            $response =  array(
+                'api_token' => $users->api_token
+            );
         
             return response()->json($response, 200);
         }else{
-            return response()->json(['error'=>'Your Credential is wrong'], 401);
+            return response()->json(['error'=>'Password atau email anda salah'], 401);
         }
     }
 
