@@ -31,6 +31,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/expense/show','ExpenseController@show');
     Route::put('/expense/{expense}','ExpenseController@update');
     Route::delete('/expense/{expense}','ExpenseController@delete');
+    Route::get('/expense/{expense}','ExpenseController@showByid');
+    Route::get('/income/{income}','IncomeController@showByid');
 });
 
 
