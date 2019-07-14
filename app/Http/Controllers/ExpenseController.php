@@ -41,7 +41,15 @@ class ExpenseController extends Controller
             'author'=>Auth::user()->email,
             'id author'=>$id,
             'count'=>$data->count(),
-            'data' => $data], 200);
+            'exp' => $data], 200);
+    }
+
+    public function showByid($expense){
+
+        $data = Income::where([['user_id','=',Auth::user()->id],['id','=',$expense]])->first();
+
+        return response()->json($data, 200);
+
     }
 
     public function update(Request $request,Expense $expense)
