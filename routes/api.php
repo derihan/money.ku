@@ -1,4 +1,7 @@
 <?php
+header('Access-Control-Allow-Origin:  *');
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
 
 use Illuminate\Http\Request;
 
@@ -29,7 +32,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/expense/show','ExpenseController@show');
     Route::put('/expense/{expense}','ExpenseController@update');
     Route::delete('/expense/{expense}','ExpenseController@delete');
+    Route::get('/income/{income}','IncomeController@showByid');
+    Route::get('/expense/{expense}','ExpenseController@showByid');
 });
+
+
 
 
 // Route::post('/income/add','IncomeController@add')->middleware('auth:api');
